@@ -55,9 +55,9 @@ class OverlayViewController: UIViewController {
                     inset: 70,
                     sublayout: LabelLayout(text: text))
                 return OverlayLayout(
-                    primaryLayouts: [baseLayout],
-                    backgroundLayouts: backgroundLayouts,
-                    overlayLayouts: overlayLayouts)
+                    primary: baseLayout,
+                    background: backgroundLayouts,
+                    overlay: overlayLayouts)
             }
         }
     }()
