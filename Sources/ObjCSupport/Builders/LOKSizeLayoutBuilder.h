@@ -6,22 +6,30 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-#import "LOKBaseLayoutBuilder.h"
+#import "LOKLayoutBuilder.h"
 
 @class LOKSizeLayout;
 
-@interface LOKSizeLayoutBuilder : LOKBaseLayoutBuilder
+@interface LOKSizeLayoutBuilder: NSObject<LOKLayoutBuilder>
 
+- (nonnull instancetype)initWithSublayout:(nullable id<LOKLayout>)sublayout;
 + (nonnull instancetype)withSublayout:(nullable id<LOKLayout>)sublayout;
 
-@property (nonatomic, nullable) id<LOKLayout> sublayout;
-@property (nonatomic) CGFloat minWidth;
-@property (nonatomic) CGFloat maxWidth;
-@property (nonatomic) CGFloat minHeight;
-@property (nonatomic) CGFloat maxHeight;
-@property (nonatomic) CGFloat width;
-@property (nonatomic) CGFloat height;
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^width)(CGFloat);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^height)(CGFloat);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^minWidth)(CGFloat);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^minHeight)(CGFloat);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^maxWidth)(CGFloat);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^maxHeight)(CGFloat);
 
-- (nonnull LOKSizeLayout *)build;
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^alignment)(LOKAlignment * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^flexibility)(LOKFlexibility * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^viewReuseId)(NSString * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^viewClass)(Class _Nullable);
+
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^config)( void(^ _Nullable)(LOKView *_Nonnull));
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^insets)(LOKEdgeInsets);
+
+@property (nonatomic, nonnull, readonly) LOKSizeLayout *layout;
 
 @end
